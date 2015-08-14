@@ -14,9 +14,20 @@ echo "SWGEmu CentOS 6 Setup and Install"
 #### Install required pkgs
 echo "Installing required packages."
 read -p "Press any key to continue or ctl-c to abort."
-sudo yum -y install gcc-c++ make gdb automake git lua lua-devel mysql-server mysql-devel java-1.8.0-openjdk boost-devel wget
-sudo chkconfig mysqld on
-sudo service mysqld start
+sudo yum -y install gcc-c++ make gdb automake git lua lua-devel mariadb mariadb-server java-1.8.0-openjdk boost-devel wget
+
+tee >  /etc/my.cnf.d/mariadb_openstack.cnf <<EOF
+[mysqld]
+bind-address = 0.0.0.0
+default-storage-engine = innodb
+innodb_file_per_table
+collation-server = utf8_general_ci
+init-connect = 'SET NAMES utf8'
+character-set-server = utf8
+EOF
+
+sudo chkconfig mariadb on
+sudo service mariadb start
 sudo mysql_secure_installation
 
 #### Install Berkeley DB ####
