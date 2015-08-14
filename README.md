@@ -15,3 +15,9 @@ While some of these scripts are of my own creation, a good portion of the functi
 These scripts are presented as-is with no warranty expressed or implied. Use at your own risk. I am not affiliated with the SWGEmu project in any way. You may need to modify these scripts to fit your own needs. 
 
 Please ask any questions regarding these scripts at [SWGEmu](http://www.swgemu.com).
+
+## Running the code:
+```
+$ sudo yum -y install git
+$ git clone https://github.com/grturner/swgemu-centos.git && cd swgemu-centos && firstrun.sh
+```
